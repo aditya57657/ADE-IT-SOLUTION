@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ade IT Solutions</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fefefe;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background-color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: black;
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .menu-toggle {
+      font-size: 26px;
+      cursor: pointer;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    nav a {
+      text-decoration: none;
+      padding: 10px 20px;
+      color: #333;
+      border-bottom: 1px solid #eee;
+    }
+    nav a:last-child {
+      border-bottom: none;
+    }
+    .hero {
+      text-align: center;
+      padding: 180px 20px 100px;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1085&q=80') no-repeat center center;
+      background-size: cover;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+    .btn {
+      background-color: #0057ff;
+      color: white;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0044cc;
+      transform: translateY(-2px);
+    }
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #111;
+    }
+    .section-subtitle {
+      color: #777;
+      margin-bottom: 50px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Services Section */
+    #services {
+      background-color: #e7f0ff;
+    }
+    .service-boxes {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-box {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .service-box:hover {
+      transform: translateY(-10px);
+    }
+    .service-icon {
+      background: linear-gradient(to right,hsla(56, 100%, 50%, 1),skyblue);
+      color: #fff;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 28px;
+      margin: 0 auto 15px auto;
+    }
+    .service-box h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #0057ff;
+    }
+    .service-box p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    /* About Section */
+    #about {
+      background-color:  #e7f0ff;
+    }
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-text {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .about-text p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: #555;
+    }
+    .about-image {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Career Section */
+    #carrier {
+      background-color: #e7f0ff;
+    }
+    .career-opportunities {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .job-position {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .job-position h3 {
+      color: #0057ff;
+      margin-bottom: 10px;
+    }
+    .job-position p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+    
+    /* Contact Section */
+    #contact {
+      background-color:#e7f0ff;
+    }
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-info {
+      margin-bottom: 30px;
+    }
+    .contact-info p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .form-group textarea {
+      height: 150px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #2B384E;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .social-links {
+      margin: 20px 0;
+    }
+    .social-links a {
+      color: white;
+      margin: 0 10px;
+      font-size: 20px;
+    }
+    .copyright {
+      margin-top: 20px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+    
+    @media(min-width: 600px) {
+      nav {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        border: none;
+        background: none;
+      }
+      nav a {
+        margin-left: 20px;
+        border-bottom: none;
+      }
+      .menu-toggle {
+        display: none;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .service-boxes {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .service-box {
+        width: calc(50% - 20px);
+      }
+      
+      .about-content {
+        flex-direction: row;
+        gap: 50px;
+      }
+      .about-text {
+        flex: 1;
+      }
+      
+      .contact-container {
+        flex-direction: row;
+        gap: 50px;
+      }
+      .contact-info {
+        flex: 1;
+      }
+      .contact-form {
+        flex: 1;
+      }
+    }
+    
+    @media (min-width: 992px) {
+      .service-box {
+        width: calc(33.333% - 20px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="Picsart_25-08-02_10-15-43-186.png", alt="ADE Logo">
+    Ade IT Solutions
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="menu">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#carrier">Career</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>We build modern IT solutions for your future success.</h1>
+  <p>Bring your vision to life that gives you to succeed.</p>
+  <a href="#services" class="btn">Get Started →</a>
+</section>
+
+<section id="services">
+  <h2 class="section-title">OUR SERVICES</h2>
+  <p class="section-subtitle">We provide comprehensive IT solutions including Website Development, Software Development, Hosting and many other services.</p>
+  
+  <div class="service-boxes">
+    <div class="service-box">
+      <div class="service-icon">💻</div>
+      <h3>Website Design</h3>
+      <p>We create sites that not only look great but work great. Our creative style and functionality match your business needs perfectly.</p>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon">🧠</div>
+      <h3>System Software Management</h3>
+      <p>We develop innovative and quality software for various industries using modern algorithms and approaches.</p>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon">🌐</div>
+      <h3>Hosting & Domain Registration</h3>
+      <p>We actively monitor our hosting and domain services 24/7 to ensure your business is always online and available.</p>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon">🔍</div>
+      <h3>Search Engine Optimization</h3>
+      <p>Our SEO services improve your web presence and Google ranking. We make your website stand out from the competition.</p>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon">📊</div>
+      <h3>Business Intelligence</h3>
+      <p>We help businesses grow by turning their data into smart insights and strategic decisions.</p>
+    </div>
+    
+    <div class="service-box">
+      <div class="service-icon">📱</div>
+      <h3>Mobile App Development</h3>
+      <p>We build high-performance mobile applications for iOS and Android platforms with intuitive user interfaces.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">ABOUT US</h2>
+  <p class="section-subtitle">Who we are and why we do what we do in the IT industry</p>
+  
+  <div class="about-content">
+    <div class="about-text">
+      <p>Ade IT Solutions is a leading technology company dedicated to providing innovative IT solutions to businesses of all sizes. Founded in 2015, we have grown from a small startup to a trusted partner for numerous organizations across various industries.</p>
+      <p>Our team consists of highly skilled professionals with expertise in web development, software engineering, cloud computing, and digital marketing. We combine technical excellence with creative thinking to deliver solutions that drive business growth.</p>
+      <p>At Ade IT Solutions, we believe in building long-term relationships with our clients. We don't just deliver projects - we become your technology partner, helping you navigate the digital landscape and achieve your business objectives.</p>
+      <a href="#contact" class="btn">Contact Us</a>
+    </div>
+    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Our Team" class="about-image">
+  </div>
+</section>
+
+<section id="carrier">
+  <h2 class="section-title">CAREER OPPORTUNITIES</h2>
+  <p class="section-subtitle">Join our team of talented professionals and grow your career in IT</p>
+  
+  <div class="career-opportunities">
+    <div class="job-position">
+      <h3>Frontend Developer</h3>
+      <p><strong>Location:</strong> Remote</p>
+      <p><strong>Experience:</strong> 2+ years</p>
+      <p>We're looking for a skilled Frontend Developer proficient in React.js to join our team. You'll be responsible for building user interfaces and implementing responsive designs.</p>
+      <button class="btn apply-btn" data-position="Frontend Developer">Apply Now</button>
+    </div>
+    
+    <div class="job-position">
+      <h3>Backend Developer</h3>
+      <p><strong>Location:</strong> Remote</p>
+      <p><strong>Experience:</strong> 3+ years</p>
+      <p>We need an experienced Backend Developer with expertise in Node.js and database management to develop robust server-side applications.</p>
+      <button class="btn apply-btn" data-position="Backend Developer">Apply Now</button>
+    </div>
+    
+    <div class="job-position">
+      <h3>Digital Marketing Specialist</h3>
+      <p><strong>Location:</strong> Remote</p>
+      <p><strong>Experience:</strong> 2+ years</p>
+      <p>Join our marketing team to help our clients improve their online presence through SEO, content marketing, and social media strategies.</p>
+      <button class="btn apply-btn" data-position="Digital Marketing Specialist">Apply Now</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">CONTACT US</h2>
+  <p class="section-subtitle">Get in touch with our team for inquiries or project discussions</p>
+  
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Our Office</h3>
+      <p><strong>Address:</strong> 123 Ade office Amritsar</p>
+      <p><strong>Phone:</strong>+91 777999XXXX</p>
+      <p><strong>Email:</strong> info@adeitsolutions.com</p>
+      <p><strong>Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM</p>
+    </div>
+    
+    <div class="contact-form">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Application Modal -->
+<div id="applicationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center;">
+  <div style="background: white; padding: 30px; border-radius: 10px; max-width: 500px; width: 90%;">
+    <h2 style="margin-bottom: 20px;">Apply for <span id="positionTitle"></span></h2>
+    <form id="applicationForm">
+      <input type="hidden" id="appliedPosition" name="position">
+      <div class="form-group">
+        <label for="applicantName">Full Name</label>
+        <input type="text" id="applicantName" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="applicantEmail">Email</label>
+        <input type="email" id="applicantEmail" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="applicantPhone">Phone</label>
+        <input type="tel" id="applicantPhone" name="phone">
+      </div>
+      <div class="form-group">
+        <label for="applicantResume">Resume (URL or LinkedIn)</label>
+        <input type="text" id="applicantResume" name="resume" required>
+      </div>
+      <div class="form-group">
+        <label for="coverLetter">Cover Letter</label>
+        <textarea id="coverLetter" name="coverLetter" rows="5"></textarea>
+      </div>
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button type="submit" class="btn">Submit Application</button>
+        <button type="button" class="btn" style="background: #ccc;" onclick="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification"></div>
+
+<footer>
+  <div class="footer-content">
+    <div class="logo" style="color: white; justify-content: center;">
+      <img src="Picsart_25-08-02_10-15-43-186.png" alt="ADE Logo">
+      Ade IT Solutions
+    </div>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>Innovative IT solutions for your business success</p>
+    <p class="copyright">© 2023 Ade IT Solutions. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Toggle mobile menu
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    if (menu.style.display === "flex") {
+      menu.style.display = "none";
+    } else {
+      menu.style.display = "flex";
+    }
+  }
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+      
+      // Close mobile menu if open
+      if (window.innerWidth < 600) {
+        document.getElementById("menu").style.display = "none";
+      }
+    });
+  });
+
+  // Application modal handling
+  const applyButtons = document.querySelectorAll('.apply-btn');
+  const applicationModal = document.getElementById('applicationModal');
+  const positionTitle = document.getElementById('positionTitle');
+  const appliedPosition = document.getElementById('appliedPosition');
+  
+  applyButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const position = button.getAttribute('data-position');
+      positionTitle.textContent = position;
+      appliedPosition.value = position;
+      applicationModal.style.display = 'flex';
+    });
+  });
+  
+  function closeModal() {
+    applicationModal.style.display = 'none';
+  }
+  
+  // Show notification
+  function showNotification(message, isSuccess = true) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.style.backgroundColor = isSuccess ? '#4CAF50' : '#f44336';
+    notification.style.display = 'block';
+    
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 5000);
+  }
+
+  // Contact form submission
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value
+    };
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        showNotification('Your message has been sent successfully!');
+        document.getElementById('contactForm').reset();
+      } else {
+        showNotification('Failed to send message. Please try again.', false);
+      }
+    } catch (error) {
+      showNotification('An error occurred. Please try again later.', false);
+    }
+  });
+  
+  // Application form submission
+  document.getElementById('applicationForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+      position: document.getElementById('appliedPosition').value,
+      name: document.getElementById('applicantName').value,
+      email: document.getElementById('applicantEmail').value,
+      phone: document.getElementById('applicantPhone').value,
+      resume: document.getElementById('applicantResume').value,
+      coverLetter: document.getElementById('coverLetter').value
+    };
+    
+    try {
+      const response = await fetch('/api/applications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        showNotification('Application submitted successfully!');
+        document.getElementById('applicationForm').reset();
+        closeModal();
+      } else {
+        showNotification('Failed to submit application. Please try again.', false);
+      }
+    } catch (error) {
+      showNotification('An error occurred. Please try again later.', false);
+    }
+  });
+</script>
+<!-- Font Awesome for social icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
